@@ -11,6 +11,7 @@ CORS(app)
 def gen_frames():  
     while True:
         success, frame = camera.read()  # read the camera frame
+        print('success',success)
         if not success:
             break
         else:
@@ -32,10 +33,10 @@ def gen_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-@app.route('/video_feed2',methods=['GET'])
+@app.route('/',methods=['GET'])
 def index():
-    print('hi')
-    # print(request)
+    print('video_feed2')
+    
     return render_template('index.html')
 
 @app.route('/video_feed',methods=['GET'])
